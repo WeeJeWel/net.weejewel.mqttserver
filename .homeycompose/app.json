@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
+  "brandColor": "#650065",
   "platforms": [
     "local"
   ],
@@ -26,5 +27,13 @@
   "author": {
     "name": "Emile Nijssen",
     "email": "emile@athom.nl"
+  },
+  "support": "mailto:emile@emile.nl",
+  "source": "https://github.com/WeeJeWel/net.weejewel.mqttserver/",
+  "api": {
+    "getStatus": {
+      "method": "GET",
+      "path": "/status"
+    }
   }
 }

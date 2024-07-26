@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<head>
+  <script
+    type="text/javascript"
+    src="/homey.js"
+    data-origin="settings"
+  ></script>
+
+  <script
+    type="text/javascript"
+    src="./js/jquery.js"
+  ></script>
+
+  <style type="text/css">
+    body {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    .homey-header {
+      margin-bottom: var(--homey-su-2) !important;
+    }
+
+    [data-view-id] {
+      flex-grow: 1;
+      display: none;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .status {
+      margin-bottom: 1em;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .status-item .icon {
+      width: 16px;
+      height: 16px;
+      background: url(./img/online.svg) no-repeat center center;
+      background-size: contain;
+      margin-right: 8px;
+    }
+
+    .status-item .text {
+      font-size: 14px;
+      user-select: text;
+    }
+
+    .users {
+      flex-grow: 1;
+    }
+
+    .users[data-count="0"] {
+      background: url(./img/empty.svg) no-repeat center bottom 1em;
+      background-size: 80% auto;
+    }
+
+    .users .user {
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      --homey-button-box-shadow: var(--homey-box-shadow-light);
+    }
+
+    .users .user:not(:last-child) {
+      padding-bottom: 1em;
+      border-bottom: 1px solid #eee;
+    }
+
+    .users .user-avatar {
+      width: 40px;
+      height: 40px;
+      background: url(./img/avatar.svg) no-repeat center center;
+      background-size: contain;
+      border-radius: 100%;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .users .user-info {
+      flex-grow: 1;
+    }
+
+    .users .user-name {
+      font-size: 16px;
+    }
+
+    .users .user-edit {
+      flex-shrink: 0;
+      background: url(./img/edit.svg) no-repeat center center;
+      background-size: 16px auto;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+
+    .users .user-edit:hover {
+      opacity: 0.9;
+      filter: grayscale(0%);
+    }
+
+    .homey-title .back {
+      height: 30px;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+
+    .homey-title .back:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div data-view-id="list-users">
+    <header class="homey-header">
+      <h1 class="homey-title">Server</h1>
+    </header>
+
+    <div class="status">
+      <div
+        class="status-item"
+        data-status-id="mqtt"
+      >
+        <div class="icon"></div>
+        <div class="text"></div>
+      </div>
+    </div>
+
+    <header class="homey-header">
+      <h1 class="homey-title">Users</h1>
+    </header>
+
+    <div class="users"> </div>
+
+    <button
+      data-button-id="new-user"
+      class="homey-button-primary-shadow homey-button-primary-full"
+    >
+      <img
+        src="./img/new.svg"
+        height="14"
+      />
+      <span>New User</span>
+    </button>
+  </div>
+
+  <div data-view-id="new-user">
+    <header class="homey-header">
+      <h1 class="homey-title">
+        <img
+          class="back"
+          src="./img/back.svg"
+        />
+        <span>New User</span>
+      </h1>
+    </header>
+
+    <fieldset
+      class="homey-form-fieldset"
+      style="padding-top: 0; margin-top: 0;"
+    >
+      <div class="homey-form-group">
+        <label
+          class="homey-form-label"
+          style="margin-top: 0;"
+        >Username</label>
+        <input
+          class="homey-form-input"
+          type="text"
+          name="username"
+          value=""
+          placeholder="JohnDoe"
+        />
+      </div>
+
+      <div class="homey-form-group">
+        <label class="homey-form-label">Password</label>
+        <input
+          class="homey-form-input"
+          type="password"
+          name="password"
+          value=""
+          placeholder="●●●●●●●●"
+        />
+      </div>
+    </fieldset>
+
+    <div style="flex-grow: 1;"></div>
+
+    <button
+      data-button-id="new-user-save"
+      class="homey-button-primary-full is-disabled"
+    >
+      <img
+        src="./img/save.svg"
+        height="14"
+      />
+      <span>Save User</span>
+    </button>
+  </div>
+
+  <div data-view-id="edit-user">
+    <header class="homey-header">
+      <h1 class="homey-title">
+        <img
+          class="back"
+          src="./img/back.svg"
+        />
+        <span>Edit User</span>
+      </h1>
+    </header>
+
+    <fieldset
+      class="homey-form-fieldset"
+      style="padding-top: 0; margin-top: 0;"
+    >
+      <div class="homey-form-group">
+        <label
+          class="homey-form-label"
+          style="margin-top: 0;"
+        >Username</label>
+        <input
+          class="homey-form-input"
+          type="text"
+          name="username"
+          value=""
+          placeholder="JohnDoe"
+        />
+      </div>
+
+      <div class="homey-form-group">
+        <label class="homey-form-label">Password</label>
+        <input
+          class="homey-form-input"
+          type="password"
+          name="password"
+          value=""
+          placeholder="●●●●●●●●"
+        />
+      </div>
+    </fieldset>
+
+    <div style="flex-grow: 1;"></div>
+
+    <button
+      data-button-id="edit-user-save"
+      class="homey-button-primary-full"
+    >
+      <img
+        src="./img/save.svg"
+        height="14"
+      />
+      <span>Save User</span>
+    </button>
+
+    <button
+      data-button-id="edit-user-delete"
+      class="homey-button-danger-full"
+    >
+      <img
+        src="./img/delete.svg"
+        height="14"
+      />
+      <span>Delete User</span>
+    </button>
+  </div>
+
+  <script type="text/javascript">
+    function onHomeyReady(Homey) {
+
+      function setView(viewId) {
+        $('[data-view-id]').css('display', 'none')
+        $(`[data-view-id="${viewId}"]`).css('display', 'flex');
+      }
+
+      function renderStatus(callback) {
+        Homey.api('GET', '/status', (err, status) => {
+          if (err) return callback(err);
+
+          $('[data-status-id="mqtt"] .text').text(`mqtt://${status.localIp}:${status.portMqtt}`);
+
+          callback();
+        });
+      }
+
+      function renderUsers(callback) {
+        Homey.get('users', (err, users) => {
+          if (err) return callback(err);
+
+          const $users = $('.users');
+          $users
+            .html('')
+            .attr('data-count', Object.keys(users).length);
+
+          for (const [userId, user] of Object.entries(users)) {
+            const $user = $(`
+              <div class="user" data-user-id="${userId}">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <div class="user-name">${user.username}</div>
+                </div>
+                <div
+                  class="user-edit"
+                  title="Edit"
+                ></div>
+              </div>
+            `);
+            $user.appendTo($users);
+            $user.find('.user-edit').click(function () {
+              setView('edit-user');
+
+              $('[data-view-id="edit-user"]').data('user-id', userId);
+              $('[data-view-id="edit-user"] input[name="username"]').val(user.username);
+              $('[data-view-id="edit-user"] input[name="password"]').val(user.password);
+            });
+          }
+
+          callback();
+        });
+      }
+
+      // List Users -> New User
+      $('[data-view-id="list-users"] [data-button-id="new-user"]').click(function () {
+        setView('new-user');
+        $('[data-view-id="new-user"] input[name="username"]').focus();
+      });
+
+      // New User -> Back
+      $('[data-view-id="new-user"] .back').click(function () {
+        setView('list-users');
+      });
+
+      // New User -> Input Validation
+      $(`
+        [data-view-id="new-user"] input[name="username"],
+        [data-view-id="new-user"] input[name="password"]
+      `).bind('change keyup', function () {
+        const username = $('[data-view-id="new-user"] input[name="username"]').val();
+        const password = $('[data-view-id="new-user"] input[name="password"]').val();
+
+        const filled = !!(username && password);
+        $('[data-view-id="new-user"] [data-button-id="new-user-save"]').toggleClass('is-disabled', !filled);
+      });
+
+      // New User -> Save User
+      $('[data-view-id="new-user"] [data-button-id="new-user-save"]').click(function () {
+        if ($(this).hasClass('is-disabled')) return;
+        if ($(this).hasClass('is-loading')) return;
+
+        const username = $('[data-view-id="new-user"] input[name="username"]').val();
+        const password = $('[data-view-id="new-user"] input[name="password"]').val();
+
+        $(this).addClass('is-loading');
+        Homey.get('users', (err, users) => {
+          if (err) {
+            $(this).removeClass('is-loading');
+            return Homey.alert(err);
+          }
+
+          const userId = (new Date()).getTime().toString(36);
+          users[userId] = { username, password };
+          Homey.set('users', users, err => {
+            if (err) {
+              $(this).removeClass('is-loading');
+              return Homey.alert(err);
+            }
+
+            renderUsers(err => {
+              if (err) {
+                $(this).removeClass('is-loading');
+                return Homey.alert(err);
+              }
+
+              $(this).removeClass('is-loading');
+              return setView('list-users');
+            });
+          });
+        });
+      });
+
+      // Edit User -> Back
+      $('[data-view-id="edit-user"] .back').click(function () {
+        setView('list-users');
+      });
+
+      // Edit User -> Input Validation
+      $(`
+        [data-view-id="edit-user"] input[name="username"],
+        [data-view-id="edit-user"] input[name="password"]
+      `).bind('change keyup', function () {
+        const username = $('[data-view-id="edit-user"] input[name="username"]').val();
+        const password = $('[data-view-id="edit-user"] input[name="password"]').val();
+
+        const filled = !!(username && password);
+        $('[data-view-id="edit-user"] [data-button-id="edit-user-save"]').toggleClass('is-disabled', !filled);
+      });
+
+      // Edit User -> Save User
+      $('[data-view-id="edit-user"] [data-button-id="edit-user-save"]').click(function () {
+        if ($(this).hasClass('is-disabled')) return;
+        if ($(this).hasClass('is-loading')) return;
+
+        const userId = $('[data-view-id="edit-user"]').data('user-id');
+        const username = $('[data-view-id="edit-user"] input[name="username"]').val();
+        const password = $('[data-view-id="edit-user"] input[name="password"]').val();
+
+        $(this).addClass('is-loading');
+        Homey.get('users', (err, users) => {
+          if (err) {
+            $(this).removeClass('is-loading');
+            return Homey.alert(err);
+          }
+
+          users[userId] = { username, password };
+          Homey.set('users', users, err => {
+            if (err) {
+              $(this).removeClass('is-loading');
+              return Homey.alert(err);
+            }
+
+
+
+
+            renderUsers(err => {
+              if (err) {
+                $(this).removeClass('is-loading');
+                return Homey.alert(err);
+              }
+
+              $(this).removeClass('is-loading');
+              setView('list-users');
+            });
+          });
+        });
+      });
+
+      // Edit User -> Delete User
+      $('[data-view-id="edit-user"] [data-button-id="edit-user-delete"]').click(function () {
+        const userId = $('[data-view-id="edit-user"]').data('user-id');
+        const username = $('[data-view-id="edit-user"] input[name="username"]').val();
+
+        Homey.confirm(`Are you sure you want to delete ${username}?`, null, (err, result) => {
+          if (err) return Homey.alert(err);
+          if (result !== true) return;
+
+          $(this).addClass('is-loading');
+          Homey.get('users', (err, users) => {
+            if (err) {
+              $(this).removeClass('is-loading');
+              return Homey.alert(err);
+            }
+
+            delete users[userId];
+
+            Homey.set('users', users, err => {
+              if (err) {
+                $(this).removeClass('is-loading');
+                return Homey.alert(err);
+              }
+
+              renderUsers((err, result) => {
+                if (err) {
+                  $(this).removeClass('is-loading');
+                  return Homey.alert(err);
+                }
+
+                $(this).removeClass('is-loading');
+                setView('list-users');
+              });
+            });
+          });
+
+        });
+      });
+
+      renderStatus(err => {
+        if (err) return Homey.alert(err);
+
+        renderUsers((err, result) => {
+          if (err) return Homey.alert(err);
+          setView('list-users');
+          Homey.ready();
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>

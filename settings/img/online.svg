@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Group 8</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="16" height="16" rx="8"></rect>
+        <filter x="-418.8%" y="-406.2%" width="937.5%" height="937.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.250980392   0 0 0 0 0.694117647   0 0 0 0 0.949019608  0 0 0 0.04 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
+            <feGaussianBlur stdDeviation="22" in="shadowOffsetOuter2" result="shadowBlurOuter2"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.250980392   0 0 0 0 0.694117647   0 0 0 0 0.949019608  0 0 0 0.07 0" type="matrix" in="shadowBlurOuter2" result="shadowMatrixOuter2"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-334.4%" y="-321.9%" width="768.8%" height="768.8%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="6.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="-6" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.02 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Explainers" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Versie-4" transform="translate(-1019.000000, -1982.000000)">
+            <g id="Group-8" transform="translate(1019.000000, 1982.000000)">
+                <g id="Rectangle-Copy">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#3AC01E" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+                </g>
+                <path d="M11.8130522,4.58607058 C11.6088601,4.44103147 11.326527,4.48344034 11.1739567,4.68206824 L6.83228472,10.447261 L4.80700076,8.10331818 C4.64195926,7.91489968 4.35745589,7.89074929 4.16301646,8.04865284 C4.07045219,8.12290412 4.01219149,8.23170897 4.00170525,8.34990979 C3.99121902,8.46811061 4.02941524,8.58547268 4.10746226,8.6748598 L6.50740375,11.4525699 C6.59535919,11.5535696 6.72279927,11.6114527 6.85672857,11.6112333 L6.87183932,11.6107882 C7.01137455,11.607079 7.14167716,11.540211 7.2260529,11.4290149 L11.9117165,5.20694433 C11.9831108,5.11223702 12.0128862,4.99255206 11.9941905,4.87543205 C11.9754949,4.75831205 11.9099386,4.65384467 11.8126078,4.58607058" id="Path" stroke="#FFFFFF" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
