@@ -137,6 +137,13 @@
         <div class="icon"></div>
         <div class="text"></div>
       </div>
+      <div
+        class="status-item"
+        data-status-id="mqtts"
+      >
+        <div class="icon"></div>
+        <div class="text"></div>
+      </div>
     </div>
 
     <header class="homey-header">
@@ -291,6 +298,7 @@
           if (err) return callback(err);
 
           $('[data-status-id="mqtt"] .text').text(`mqtt://${status.localIp}:${status.portMqtt}`);
+          $('[data-status-id="mqtts"] .text').text(`mqtts://${status.localIp}:${status.portMqtts}`);
 
           callback();
         });
