@@ -12,6 +12,7 @@
     {
       "type": "text",
       "name": "topic",
+      "title": "Topic",
       "placeholder": {
         "en": "my/topic"
       }

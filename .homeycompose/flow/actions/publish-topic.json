@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en": "Publish a topic"
+  },
+  "titleFormatted": {
+    "en": "Publish [[topic]] with value [[value]]"
+  },
+  "hint": {
+    "en": "This card will publish a topic on the MQTT Server."
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "topic",
+      "title": "Topic",
+      "placeholder": {
+        "en": "my/topic"
+      }
+    },
+    {
+      "type": "text",
+      "name": "value",
+      "title": "Value",
+      "placeholder": {
+        "en": "Hello World"
+      }
+    }
+  ]
+}

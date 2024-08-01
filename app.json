@@ -41,7 +41,7 @@
     "triggers": [
       {
         "title": {
-          "en": "Any Topic was published"
+          "en": "Any topic was published"
         },
         "hint": {
           "en": "This card will start when any MQTT Topic has been published. The value tag will always be of type 'Text'."
@@ -72,7 +72,7 @@
       },
       {
         "title": {
-          "en": "A specific Topic was published"
+          "en": "A specific topic was published"
         },
         "titleFormatted": {
           "en": "The topic [[topic]] was published"
@@ -84,6 +84,7 @@
           {
             "type": "text",
             "name": "topic",
+            "title": "Topic",
             "placeholder": {
               "en": "my/topic"
             }
@@ -112,6 +113,60 @@
           }
         ],
         "id": "specific-topic-published"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Publish a topic"
+        },
+        "titleFormatted": {
+          "en": "Publish [[topic]] with value [[value]]"
+        },
+        "hint": {
+          "en": "This card will publish a topic on the MQTT Server."
+        },
+        "args": [
+          {
+            "type": "text",
+            "name": "topic",
+            "title": "Topic",
+            "placeholder": {
+              "en": "my/topic"
+            }
+          },
+          {
+            "type": "text",
+            "name": "value",
+            "title": "Value",
+            "placeholder": {
+              "en": "Hello World"
+            }
+          }
+        ],
+        "id": "publish-topic"
+      },
+      {
+        "title": {
+          "en": "Unpublish a topic"
+        },
+        "titleFormatted": {
+          "en": "Unpublish [[topic]]"
+        },
+        "hint": {
+          "en": "This card will unpublish a topic on the MQTT Server."
+        },
+        "args": [
+          {
+            "type": "text",
+            "name": "topic",
+            "title": "Topic",
+            "placeholder": {
+              "en": "my/topic"
+            }
+          }
+        ],
+        "id": "unpublish-topic"
       }
     ]
   }
