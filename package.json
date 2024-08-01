@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "aedes": "^0.51.2",
+    "get-port": "^5.1.1",
     "homey-api": "^3.6.0"
   }
 }
