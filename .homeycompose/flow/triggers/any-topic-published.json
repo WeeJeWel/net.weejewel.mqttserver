@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en": "Any topic was published"
+  },
+  "hint": {
+    "en": "This card will start when any MQTT Topic has been published. The value tag will always be of type 'Text'."
+  },
+  "tokens": [
+    {
+      "type": "string",
+      "name": "topic",
+      "title": {
+        "en": "Topic"
+      },
+      "example": {
+        "en": "The Topic."
+      }
+    },
+    {
+      "type": "string",
+      "name": "value",
+      "title": {
+        "en": "Value"
+      },
+      "example": {
+        "en": "The value of the Topic."
+      }
+    }
+  ]
+}

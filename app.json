@@ -36,5 +36,83 @@
       "method": "GET",
       "path": "/status"
     }
+  },
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "Any Topic was published"
+        },
+        "hint": {
+          "en": "This card will start when any MQTT Topic has been published. The value tag will always be of type 'Text'."
+        },
+        "tokens": [
+          {
+            "type": "string",
+            "name": "topic",
+            "title": {
+              "en": "Topic"
+            },
+            "example": {
+              "en": "The Topic."
+            }
+          },
+          {
+            "type": "string",
+            "name": "value",
+            "title": {
+              "en": "Value"
+            },
+            "example": {
+              "en": "The value of the Topic."
+            }
+          }
+        ],
+        "id": "any-topic-published"
+      },
+      {
+        "title": {
+          "en": "A specific Topic was published"
+        },
+        "titleFormatted": {
+          "en": "The topic [[topic]] was published"
+        },
+        "hint": {
+          "en": "This card will start when a specific MQTT Topic has been published. The value tag will always be of type 'Text'."
+        },
+        "args": [
+          {
+            "type": "text",
+            "name": "topic",
+            "placeholder": {
+              "en": "my/topic"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "type": "string",
+            "name": "topic",
+            "title": {
+              "en": "Topic"
+            },
+            "example": {
+              "en": "The Topic."
+            }
+          },
+          {
+            "type": "string",
+            "name": "value",
+            "title": {
+              "en": "Value"
+            },
+            "example": {
+              "en": "The value of the Topic."
+            }
+          }
+        ],
+        "id": "specific-topic-published"
+      }
+    ]
   }
 }
