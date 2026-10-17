@@ -10,5 +10,8 @@
   },
   "1.1.0": {
     "en": "Added Flow cards & automatically finds a port to listen on, if 1883 or 8883 is not available."
+  },
+  "1.2.0": {
+    "en": "Only trigger Specific Topic Flow when it's actually being used to prevent rate limits."
   }
 }
