@@ -51,6 +51,7 @@
     .status-item .text {
       font-size: 14px;
       user-select: text;
+      font-family: monospace;
     }
 
     .users {
@@ -144,6 +145,38 @@
         <div class="icon"></div>
         <div class="text"></div>
       </div>
+    </div>
+
+    <header class="homey-header">
+      <h1 class="homey-title">Settings</h1>
+    </header>
+
+    <div class="settings">
+      <label
+        class="homey-form-checkbox"
+        style="margin-top: 0; font-size: 16px;"
+      >
+        <input
+          class="homey-form-checkbox-input"
+          type="checkbox"
+          name="checkbox-publish-homey"
+        />
+        <span class="homey-form-checkbox-checkmark"></span>
+        <span class="homey-form-checkbox-text">Publish devices to <code>/homey</code></span>
+      </label>
+
+      <label
+        class="homey-form-checkbox"
+        style="margin-top: 0; font-size: 16px;"
+      >
+        <input
+          class="homey-form-checkbox-input"
+          type="checkbox"
+          name="checkbox-publish-homie"
+        />
+        <span class="homey-form-checkbox-checkmark"></span>
+        <span class="homey-form-checkbox-text">Publish devices to <code>/homie</code></span>
+      </label>
     </div>
 
     <header class="homey-header">
@@ -304,6 +337,21 @@
         });
       }
 
+      function renderSettings(callback) {
+        Homey.get('publish_homey', (err, publish_homey) => {
+          if (err) return callback(err);
+
+          Homey.get('publish_homie', (err, publish_homie) => {
+            if (err) return callback(err);
+
+            $('input[name="checkbox-publish-homey"]').prop('checked', publish_homey !== false);
+            $('input[name="checkbox-publish-homie"]').prop('checked', publish_homie !== false);
+
+            callback();
+          });
+        });
+      }
+
       function renderUsers(callback) {
         Homey.get('users', (err, users) => {
           if (err) return callback(err);
@@ -439,9 +487,6 @@
               return Homey.alert(err);
             }
 
-
-
-
             renderUsers(err => {
               if (err) {
                 $(this).removeClass('is-loading');
@@ -494,13 +539,32 @@
         });
       });
 
+      // Change Settings
+      $('input[name="checkbox-publish-homey"]').change(function () {
+        const publish_homey = $(this).prop('checked');
+        Homey.set('publish_homey', publish_homey, err => {
+          if (err) return Homey.alert(err);
+        });
+      });
+
+      $('input[name="checkbox-publish-homie"]').change(function () {
+        const publish_homie = $(this).prop('checked');
+        Homey.set('publish_homie', publish_homie, err => {
+          if (err) return Homey.alert(err);
+        });
+      });
+
       renderStatus(err => {
         if (err) return Homey.alert(err);
 
-        renderUsers((err, result) => {
+        renderSettings((err, result) => {
           if (err) return Homey.alert(err);
-          setView('list-users');
-          Homey.ready();
+
+          renderUsers((err, result) => {
+            if (err) return Homey.alert(err);
+            setView('list-users');
+            Homey.ready();
+          });
         });
       });
     }
