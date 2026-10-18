@@ -13,5 +13,8 @@
   },
   "1.2.0": {
     "en": "Only trigger Specific Topic Flow when it's actually being used to prevent rate limits."
+  },
+  "1.3.0": {
+    "en": "Added checkboxes to enable or disable publishing devices to /homey and /homie endpoints."
   }
 }
